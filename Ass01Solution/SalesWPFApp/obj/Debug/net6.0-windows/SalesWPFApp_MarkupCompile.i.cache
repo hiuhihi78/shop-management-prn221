@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\FU\PRN221\Nop Bai\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\
 SalesWPFApp
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\FU\PRN221\Nop Bai\Ass01Solution\SalesWPFApp\App.xaml
-3965980365
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\App.xaml
+4-406941786
 
-132049960892
-2261194501320
-MainWindow.xaml;Views\Home.xaml;Views\Login.xaml;
+15-574389192
+226-2034876028
+MainWindow.xaml;Views\Home.xaml;Views\Login.xaml;Views\MemeberManagement.xaml;
 
 True
 

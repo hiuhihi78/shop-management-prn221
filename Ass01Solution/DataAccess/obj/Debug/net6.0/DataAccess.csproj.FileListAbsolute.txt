@@ -12,3 +12,17 @@ D:\FU\PRN221\Nop Bai\Ass01Solution\DataAccess\obj\Debug\net6.0\DataAccess.pdb
 D:\FU\PRN221\Nop Bai\Ass01Solution\DataAccess\obj\Debug\net6.0\ref\DataAccess.dll
 D:\FU\PRN221\Nop Bai\Ass01Solution\DataAccess\bin\Debug\net6.0\DataAccess.runtimeconfig.json
 D:\FU\PRN221\Nop Bai\Ass01Solution\DataAccess\obj\Debug\net6.0\DataAccess.genruntimeconfig.cache
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\DataAccess\bin\Debug\net6.0\DataAccess.deps.json
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\DataAccess\bin\Debug\net6.0\DataAccess.runtimeconfig.json
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\DataAccess\bin\Debug\net6.0\DataAccess.dll
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\DataAccess\bin\Debug\net6.0\DataAccess.pdb
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\DataAccess\obj\Debug\net6.0\DataAccess.csproj.AssemblyReference.cache
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\DataAccess\obj\Debug\net6.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\DataAccess\obj\Debug\net6.0\DataAccess.AssemblyInfoInputs.cache
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\DataAccess\obj\Debug\net6.0\DataAccess.AssemblyInfo.cs
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\DataAccess\obj\Debug\net6.0\DataAccess.csproj.CoreCompileInputs.cache
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\DataAccess\obj\Debug\net6.0\DataAccess.dll
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\DataAccess\obj\Debug\net6.0\refint\DataAccess.dll
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\DataAccess\obj\Debug\net6.0\DataAccess.pdb
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\DataAccess\obj\Debug\net6.0\DataAccess.genruntimeconfig.cache
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\DataAccess\obj\Debug\net6.0\ref\DataAccess.dll

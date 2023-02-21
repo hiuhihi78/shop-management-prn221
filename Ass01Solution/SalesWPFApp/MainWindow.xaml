@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SalesWPFApp"
         mc:Ignorable="d"
         Title="MainWindow" 
-        d:DesignHeight="550" d:DesignWidth="800"
+        d:DesignHeight="550" d:DesignWidth="1000"
         >
     <Border CornerRadius="10"
             Background="Gray"

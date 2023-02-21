@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+Q3NRC2IjLW0EZdPI90zsZGMhz1IEoRy1f5twy4OhD2iXDt2KxjPu9FHxN54oUG0ywGEIn63KM9iBTTeZKF1eg==",
+  "dgSpecHash": "3ggB3WcQO7rZUIwIcd25le6pOyGuXvQSvdVctqqSzdoBxf5PlqovSTOSJ0wj85DP+VPd97jMMACtnBg+3vyqUw==",
   "success": true,
-  "projectFilePath": "D:\\FU\\PRN221\\Nop Bai\\Ass01Solution\\DataAccess\\DataAccess.csproj",
+  "projectFilePath": "D:\\FU\\PRN221\\Nop Bai\\shop-management-prn221\\Ass01Solution\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dell\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\dell\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

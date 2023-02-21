@@ -5,10 +5,23 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SalesWPFApp.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Home">
+      Title="Home"
+      d:DesignHeight="550" d:DesignWidth="1100"
+      
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      >
 
-    <Grid>
-        
-    </Grid>
+    <Canvas>
+
+        <TextBox Text="Cutoi shop" FontWeight="Bold" FontSize="30" Canvas.Left="510" Canvas.Top="48"/>
+        <Button
+            Content="Member Management"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+            ToolTip="MaterialDesignFlatLightButton" Canvas.Left="510" Canvas.Top="320" HorizontalAlignment="Left" Height="49" VerticalAlignment="Center" 
+            
+            />
+
+
+    </Canvas>
 </Page>

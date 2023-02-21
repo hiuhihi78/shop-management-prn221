@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z2GscWDeDnYQRh1gTBFJfgz0TVyUSzvqyYWicnxKb7eYrQ2XvSdVbZdFnB4dNGZJUuswnSbQ9sf+PbWUbHFGaA==",
+  "dgSpecHash": "TmwK7i5WbJfn06BEdKr84i1fIwzfM8CM0qnbATRNVSVgZnAOVSJuKc4yqdg0EtwLbM/6JfSf6JTTrwOVOLH6bw==",
   "success": true,
-  "projectFilePath": "D:\\FU\\PRN221\\Nop Bai\\Ass01Solution\\SalesWPFApp\\SalesWPFApp.csproj",
+  "projectFilePath": "D:\\FU\\PRN221\\Nop Bai\\shop-management-prn221\\Ass01Solution\\SalesWPFApp\\SalesWPFApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dell\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\dell\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
