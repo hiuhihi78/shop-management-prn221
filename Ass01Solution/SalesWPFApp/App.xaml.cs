@@ -21,7 +21,7 @@ namespace SalesWPFApp
         {
             //Config for DependencyInjection ()
             ServiceCollection services = new ServiceCollection();
-            
+            ConfigureServices(services);
         }
 
         private void ConfigureServices(ServiceCollection services)

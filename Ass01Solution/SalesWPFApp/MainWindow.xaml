@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" 
         d:DesignHeight="550" d:DesignWidth="1000"
+        WindowStartupLocation="CenterScreen"
         >
     <Border CornerRadius="10"
-            Background="Gray"
+            Background="WhiteSmoke"
             BorderBrush="#652811"
             BorderThickness="2"
             Opacity="0.8"

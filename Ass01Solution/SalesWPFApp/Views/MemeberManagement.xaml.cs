@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SalesWPFApp.ViewModels;
 
 namespace SalesWPFApp.Views
 {
@@ -23,6 +24,7 @@ namespace SalesWPFApp.Views
         public MemeberManagement()
         {
             InitializeComponent();
+            DataContext = new MemberManagementViewModel();
         }
     }
 }

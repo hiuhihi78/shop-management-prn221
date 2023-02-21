@@ -4,11 +4,14 @@ using SalesWPFApp.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Microsoft.Extensions.Configuration;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.IO;
+using Microsoft.Extensions.Options;
 
 namespace SalesWPFApp.ViewModels
 {
@@ -31,9 +34,9 @@ namespace SalesWPFApp.ViewModels
             set { email = value; OnPropertyChanged(); }
         }
 
-        private string  password;
+        private string password;
 
-        public string  Password
+        public string Password
         {
             get { return password; }
             set { password = value; OnPropertyChanged(); }
@@ -59,14 +62,27 @@ namespace SalesWPFApp.ViewModels
 
         public void HandleLogin()
         {
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+            var adminEmail = configuration.GetSection("AppSettings").GetSection("email").Value;
+            var adminPassword = configuration.GetSection("AppSettings").GetSection("password").Value;
+
             var member = MemberManagement.Instance.GetMember(Email, Password);
-            if(member != null) 
+            if (member != null)
             {
+                NavigationParameters.Parameters.Add("isAdmin", false);
+                NavigationParameters.Parameters.Add("member", member);
+                Navigation.NavigationService.NavigateTo(new Home());
+            }
+            else if (Email == adminEmail && Password == adminPassword)
+            {
+                NavigationParameters.Parameters.Add("isAdmin", true);
                 Navigation.NavigationService.NavigateTo(new Home());
             }
             else
             {
-                MessageBox.Show("Login failed. Please check your credentials and try again.", "Login Failed", MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show("Login failed. Please check your credentials and try again.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

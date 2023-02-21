@@ -23,7 +23,7 @@ namespace SalesWPFApp.ViewModels
 
         public HomeViewModel()
         {
-
+            memberManagementCommand = new RelayCommand(HandleMemberManagement);
         }
 
         #region management member

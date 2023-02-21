@@ -136,3 +136,17 @@ D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\
 D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\SalesWPFApp.pdb
 D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\SalesWPFApp.genruntimeconfig.cache
 D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\ref\SalesWPFApp.dll
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.dll
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.Json.dll
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\bin\Debug\net6.0-windows\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\bin\Debug\net6.0-windows\Microsoft.Extensions.FileProviders.Physical.dll
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\bin\Debug\net6.0-windows\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\bin\Debug\net6.0-windows\System.Text.Encodings.Web.dll
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\bin\Debug\net6.0-windows\System.Text.Json.dll
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\bin\Debug\net6.0-windows\appsettings.json
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\PopupUpdateCreateMember.g.cs
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\PopupUpdateCreateMember.baml
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\bin\Debug\net6.0-windows\ModalControl.dll
