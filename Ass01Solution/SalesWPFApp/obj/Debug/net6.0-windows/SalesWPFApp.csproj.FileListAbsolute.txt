@@ -156,3 +156,5 @@ D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\
 D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\PopupCreateUpdateProduct.baml
 D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\Order.g.cs
 D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\Order.baml
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\OrderHistory.g.cs
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\OrderHistory.baml

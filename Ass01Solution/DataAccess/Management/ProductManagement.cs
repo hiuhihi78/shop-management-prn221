@@ -48,6 +48,21 @@ namespace DataAccess.Management
             return product;
         }
 
+        public Product GetProductByName(string name)
+        {
+            Product? product;
+            try
+            {
+                Assgiment1PrnContext context = new Assgiment1PrnContext();
+                product = context.Products.FirstOrDefault(x => x.ProductName == name);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return product;
+        }
+
         public ObservableCollection<ProductDTO> GetListProduct(string parmeter)
         {
             Assgiment1PrnContext context = new Assgiment1PrnContext();

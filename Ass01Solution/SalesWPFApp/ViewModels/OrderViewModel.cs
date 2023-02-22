@@ -43,6 +43,8 @@ namespace SalesWPFApp.ViewModels
             set { listOrderProduct = value; OnPropertyChanged(); }
         }
 
+
+
         private ProductDTO selectedProduct;
         public ProductDTO SelectedProduct
         {
@@ -85,6 +87,7 @@ namespace SalesWPFApp.ViewModels
             removeProductInCart = new RelayCommand<ProductDTO>(ExecuteDeleteProductInCart, CanExecuteDeleteProductInCart);
             backToPreviousScreen = new RelayCommand(HandleBackToPreviousScreen);
             checkoutOrder = new RelayCommand(ExecuteCheckoutOrder);
+            openOrderHistory = new RelayCommand(HandleOpenHistoryOrder);
             UpdateStatusCheckoutOrder();
             UpdateTotalPriceOrder();
         }
@@ -111,6 +114,7 @@ namespace SalesWPFApp.ViewModels
         }
         #endregion
 
+        #region Add to cart
         private RelayCommand<ProductDTO> addToCart;
 
         public RelayCommand<ProductDTO> AddToCart
@@ -134,7 +138,7 @@ namespace SalesWPFApp.ViewModels
             }
             else
             {
-                ProductDTO product = DataAccess.Management.ProductManagement.Instance.GetProductById(productSelected.ProductId);   
+                ProductDTO product = DataAccess.Management.ProductManagement.Instance.GetProductById(productSelected.ProductId);
                 if (product == null)
                 {
 
@@ -153,6 +157,7 @@ namespace SalesWPFApp.ViewModels
             UpdateTotalPriceOrder();
             UpdateStatusCheckoutOrder();
         }
+        #endregion
 
         #region Remove a Product In Cart
 
@@ -214,7 +219,6 @@ namespace SalesWPFApp.ViewModels
         }
         #endregion
 
-
         #region Checkout Order (Navigation to screen checkout order)
 
         private RelayCommand checkoutOrder;
@@ -242,8 +246,8 @@ namespace SalesWPFApp.ViewModels
                     Freight = 30,
                     MemberId = ((DataAccess.Models.Member)NavigationParameters.Parameters["member"]).MemberId,
                     OrderDate = DateTime.Now,
-                    RequiredDate= DateTime.Now,
-                    ShippedDate= DateTime.Now.AddDays(3),
+                    RequiredDate = DateTime.Now,
+                    ShippedDate = DateTime.Now.AddDays(3),
                 };
 
                 if (OrderManagement.Instance.CreateOrder(orderInfo, ListOrderProduct) == true)
@@ -262,5 +266,31 @@ namespace SalesWPFApp.ViewModels
             }
         }
         #endregion
+
+        #region Open Order history
+        private RelayCommand openOrderHistory;
+
+        public RelayCommand OpenOrderHistory
+        {
+            get { return openOrderHistory; }
+            set { openOrderHistory = value; }
+        }
+
+        public void HandleOpenHistoryOrder()
+        {
+            NavigationService.NavigateTo(new OrderHistory(), this);
+        }
+
+        #endregion
+
+        #region Get list history order
+
+
+
+
+
+
+        #endregion
+
     }
 }

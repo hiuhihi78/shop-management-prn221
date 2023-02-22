@@ -1,0 +1,81 @@
+﻿<Page x:Class="SalesWPFApp.Views.OrderHistory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalesWPFApp.Views"
+        mc:Ignorable="d"
+        Title="OrderHistory" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      
+        d:DesignHeight="550" d:DesignWidth="1000"
+        FontSize="15"
+      >
+
+    <Canvas>
+        <TextBlock
+            Text="ORDER"
+            FontSize="30"
+            FontWeight="Bold" HorizontalAlignment="Left" Canvas.Left="83" VerticalAlignment="Center" Canvas.Top="27"
+            />
+        <TextBox
+            materialDesign:HintAssist.Hint="Product's name"
+            materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
+            MaxLength="40"
+            Style="{StaticResource MaterialDesignFilledTextBox}"
+            TextWrapping="Wrap" Canvas.Left="83" Canvas.Top="97" HorizontalAlignment="Left" VerticalAlignment="Top" Width="395" RenderTransformOrigin="0.501,0.559"
+            Text="{Binding SearchProduct, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            />
+
+        <DataGrid
+            Name="gridProducts"
+            CanUserAddRows="False"
+            ItemsSource="{Binding Products}"
+            SelectionMode="Extended"
+            SelectionUnit="Cell" 
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            ScrollViewer.CanContentScroll="True" 
+            Height="301" Canvas.Left="83" Canvas.Top="183" HorizontalAlignment="Left" VerticalAlignment="Center" Width="618"
+            >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding ProductName}" Width="180"/>
+                <DataGridTextColumn Header="Weight" Binding="{Binding Weight}" Width="100" />
+                <DataGridTextColumn Header="UnitPrice" Binding="{Binding UnitPrice}" Width="100"/>
+                <DataGridTextColumn Header="UnitsInStock" Binding="{Binding UnitsInStock}" Width="140"/>
+
+                <DataGridTemplateColumn Header="Actions" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                Command="{Binding DataContext.AddToCart, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                CommandParameter="{Binding}"
+                                >
+                                <Button.Content>
+                                    <materialDesign:PackIcon Kind="PlusThick" />
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button
+            Command="{Binding BackToPreviousScreen}"
+            Canvas.Left="726" Canvas.Top="426" 
+            HorizontalAlignment="Center" VerticalAlignment="Top" 
+            Width="92" Height="58"
+            Background="#0077d0"
+            FontSize="40"
+            >
+            <Button.Content>
+                <materialDesign:PackIcon 
+                    Width="40"
+                    Height="40"
+                    Kind="KeyboardReturn" />
+            </Button.Content>
+        </Button>
+
+    </Canvas>
+</Page>

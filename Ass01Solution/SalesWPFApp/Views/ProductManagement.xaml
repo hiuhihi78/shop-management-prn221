@@ -12,16 +12,23 @@
       >
     <Canvas>
 
+        <TextBlock
+            Text="Product management"
+            FontSize="30"
+            FontWeight="Bold" HorizontalAlignment="Left" Canvas.Left="17" VerticalAlignment="Top" Canvas.Top="27"
+            />
+
         <TextBox
         materialDesign:HintAssist.Hint="Product's name"
         AcceptsReturn="True"
         Text="{Binding SearchProduct, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
         Style="{StaticResource MaterialDesignFilledTextBox}"
-        TextWrapping="Wrap" Canvas.Left="58" Canvas.Top="58" HorizontalAlignment="Left" VerticalAlignment="Center" Width="241" />
+        TextWrapping="Wrap" Canvas.Left="58" Canvas.Top="72" HorizontalAlignment="Center" VerticalAlignment="Top" Width="241" />
 
         <Button
             Command="{Binding CreateProduct}"
-            Background="Coral" Canvas.Left="58" Canvas.Top="132"
+            Background="Coral" Canvas.Left="58" Canvas.Top="145"
+            IsEnabled="{Binding IsAdmin}" HorizontalAlignment="Center" VerticalAlignment="Top"
             >
             <Button.Content>
                 Create new product
@@ -51,6 +58,7 @@
                                 Command="{Binding DataContext.UpdateProduct, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                 CommandParameter="{Binding}"
                                 Background="Blue"
+                                IsEnabled="{Binding IsAdmin}"
                                 >
                                 <Button.Content>
                                     <materialDesign:PackIcon Kind="Update" />

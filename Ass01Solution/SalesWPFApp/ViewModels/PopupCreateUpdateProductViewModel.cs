@@ -94,10 +94,18 @@ namespace SalesWPFApp.ViewModels
 
             var isCanSubmit = (string.IsNullOrEmpty(ProductName) || string.IsNullOrEmpty(Weight) || string.IsNullOrEmpty(UnitPrice) || string.IsNullOrEmpty(UnitsInStock)) == true ? false : true;
             var windown = parameter as Window;
+            var productExisted = ProductManagement.Instance.GetProductByName(ProductName) != null;
 
             if (isCanSubmit == false)
             {
                 MessageBox.Show("You need to fill all field");
+                return;
+            }else if((isNumber(Weight) && isNumber(UnitPrice) && isNumber(UnitsInStock)) == false){
+                MessageBox.Show("Field Weight,UnitPrice,UnitsInStock must be a number!");
+                return;
+            }else if(productExisted)
+            {
+                MessageBox.Show("Product name was exsited!");
                 return;
             }
 
@@ -115,6 +123,7 @@ namespace SalesWPFApp.ViewModels
                     };
                     ProductManagement.Instance.CreateProduct(result);
                     MessageBox.Show("Operation completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Navigation.NavigationService.NavigateTo(new Views.ProductManagement());
                     windown.Close();
                 }
                 else
@@ -129,10 +138,23 @@ namespace SalesWPFApp.ViewModels
                     };
                     ProductManagement.Instance.UpdateProduct(result);
                     MessageBox.Show("Operation completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Navigation.NavigationService.NavigateTo(new Views.ProductManagement());
                     windown.Close();
                 }
             }
 
+        }
+        
+        private bool isNumber(string text)
+        {
+            try
+            {
+                Double.Parse(text);
+                return true;
+            }catch(Exception ex) 
+            {
+                return false;
+            }
         }
     }
 }

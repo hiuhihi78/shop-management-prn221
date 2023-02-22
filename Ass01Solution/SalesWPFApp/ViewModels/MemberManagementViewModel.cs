@@ -49,7 +49,7 @@ namespace SalesWPFApp.ViewModels
             set { selectedMember = value; OnPropertyChanged(); }
         }
 
-
+        public bool IsAdmin { get; set; }
 
         #endregion
 
@@ -62,6 +62,7 @@ namespace SalesWPFApp.ViewModels
             updateMember = new RelayCommand<MemberDTO>(ExecuteUpdateMember, CanExecuteUpdateMember);
             createMember = new RelayCommand(ExecuteCreateMember);
             backToPreviousScreen = new RelayCommand(HandleBackToPreviousScreen);
+            IsAdmin = (bool)NavigationParameters.Parameters["isAdmin"];
         }
 
         #region Load list members

@@ -35,6 +35,14 @@
             FontWeight="DemiBold" HorizontalAlignment="Left" 
             Canvas.Left="275" VerticalAlignment="Top" Canvas.Top="129"/>
 
+        <Button
+            Content="Order history"
+            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+            ToolTip="MaterialDesignFlatLightButton" Canvas.Left="492" 
+            Canvas.Top="130" HorizontalAlignment="Left" VerticalAlignment="Center" 
+            Command="{Binding OpenOrderHistory}"
+            />
+
         <TextBlock
             Text="Cart"
             FontSize="17"
@@ -50,7 +58,7 @@
             AutoGenerateColumns="False"
             IsReadOnly="True"
             ScrollViewer.CanContentScroll="True" 
-            Height="301" Canvas.Left="10" Canvas.Top="173" HorizontalAlignment="Center" VerticalAlignment="Top" Width="598"
+            Height="301" Canvas.Left="10" Canvas.Top="173" HorizontalAlignment="Left" VerticalAlignment="Center" Width="632"
             >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding ProductName}" Width="180"/>
@@ -118,7 +126,7 @@
                Canvas.Left="707" Canvas.Top="434"
                HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-        
+
 
         <Label Content="Discount:" 
                FontSize="24"

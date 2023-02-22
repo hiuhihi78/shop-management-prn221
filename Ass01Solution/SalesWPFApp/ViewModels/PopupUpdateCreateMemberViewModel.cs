@@ -1,13 +1,16 @@
 ﻿using DataAccess.DTOs;
 using DataAccess.Management;
 using DataAccess.Models;
+using Microsoft.Extensions.FileSystemGlobbing.Internal;
 using SalesWPFApp.Commands;
+using SalesWPFApp.Navigation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -102,10 +105,20 @@ namespace SalesWPFApp.ViewModels
 
             var isCanSubmit = (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(Country) || string.IsNullOrEmpty(City) || string.IsNullOrEmpty(CompanyName)) == true ? false : true;
             var windown = parameter as Window;
+            var emailExisted = MemberManagement.Instance.GetMemberByEmail(Email) != null;
+            Regex regex = new Regex("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
 
-            if(isCanSubmit == false) 
+            if (isCanSubmit == false) 
             {
                 MessageBox.Show("You need to fill all field");
+                return;
+            }else if (emailExisted)
+            {
+                MessageBox.Show("Email was exsited");
+                return;
+            }else if (!regex.IsMatch(Email))
+            {
+                MessageBox.Show("Email must folow fomat!");
                 return;
             }
 
@@ -141,6 +154,7 @@ namespace SalesWPFApp.ViewModels
                     MessageBox.Show("Operation completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     windown.Close();
                 }
+                NavigationService.NavigateTo(new Views.MemeberManagement());
             }
             
 

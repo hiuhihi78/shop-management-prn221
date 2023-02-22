@@ -42,6 +42,9 @@ namespace SalesWPFApp.ViewModels
             set { searchProduct = value; OnPropertyChanged(); LoadDataGridMembers(); }
         }
 
+
+        public bool IsAdmin { get; set; }   
+
         public ProductManagementViewModel()
         {
             LoadDataGridMembers();
@@ -50,6 +53,7 @@ namespace SalesWPFApp.ViewModels
             updateProduct = new RelayCommand<ProductDTO>(ExecuteUpdateProduct, CanExecuteUpdateProduct);
             createProduct = new RelayCommand(ExecuteCreateProduct);
             backToPreviousScreen = new RelayCommand(HandleBackToPreviousScreen);
+            IsAdmin = (bool)NavigationParameters.Parameters["isAdmin"];
         }
 
 
