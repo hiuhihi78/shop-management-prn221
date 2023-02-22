@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\App.xaml
-5295468043
+8-841945686
 
-191635863642
+252031667417
 233-976862362
-MainWindow.xaml;Views\Home.xaml;Views\Login.xaml;Views\MemeberManagement.xaml;Views\PopupUpdateCreateMember.xaml;
+MainWindow.xaml;Views\Home.xaml;Views\Login.xaml;Views\MemeberManagement.xaml;Views\Order.xaml;Views\PopupCreateUpdateProduct.xaml;Views\PopupUpdateCreateMember.xaml;Views\ProductManagement.xaml;
 
-True
+False
 

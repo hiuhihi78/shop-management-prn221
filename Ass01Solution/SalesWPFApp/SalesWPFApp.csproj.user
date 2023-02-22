@@ -16,7 +16,16 @@
     <Compile Update="Views\MemeberManagement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Order.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\PopupCreateUpdateProduct.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\PopupUpdateCreateMember.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProductManagement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -33,7 +42,16 @@
     <Page Update="Views\MemeberManagement.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Order.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\PopupCreateUpdateProduct.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\PopupUpdateCreateMember.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ProductManagement.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

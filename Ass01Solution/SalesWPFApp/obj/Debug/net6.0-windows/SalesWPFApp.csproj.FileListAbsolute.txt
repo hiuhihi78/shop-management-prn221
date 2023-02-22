@@ -150,3 +150,9 @@ D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\
 D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\PopupUpdateCreateMember.g.cs
 D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\PopupUpdateCreateMember.baml
 D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\bin\Debug\net6.0-windows\ModalControl.dll
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\ProductManagement.g.cs
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\ProductManagement.baml
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\PopupCreateUpdateProduct.g.cs
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\PopupCreateUpdateProduct.baml
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\Order.g.cs
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\Order.baml

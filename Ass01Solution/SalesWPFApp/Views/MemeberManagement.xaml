@@ -5,11 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:view="clr-namespace:SalesWPFApp.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="1100"
       Title="MemeberManagement"
+      
+      d:DesignHeight="550" d:DesignWidth="1100"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      xmlns:ValidationRule="clr-namespace:SalesWPFApp.Validation"
-      xmlns:modalcontrol="clr-namespace:ModalControl;assembly=ModalControl">
+      >
     <Canvas>
 
         <TextBox
@@ -64,7 +64,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button
-                                Command="{Binding DataContext.DeleteMember, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                Command="{Binding DataContext.DeleteProduct, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                 CommandParameter="{Binding}"
                                 Background="Red"
                                 >

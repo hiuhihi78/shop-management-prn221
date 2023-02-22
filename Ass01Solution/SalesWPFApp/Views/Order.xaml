@@ -1,0 +1,167 @@
+﻿<Page x:Class="SalesWPFApp.Views.Order"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SalesWPFApp.Views"
+      mc:Ignorable="d" 
+      Title="Order"
+      
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      
+      d:DesignHeight="550" d:DesignWidth="1100"
+      FontSize="15"
+      >
+
+    <Canvas>
+        <TextBlock
+            Text="ORDER"
+            FontSize="30"
+            FontWeight="Bold" HorizontalAlignment="Left" Canvas.Left="17" VerticalAlignment="Top" Canvas.Top="27"
+            />
+        <TextBox
+            materialDesign:HintAssist.Hint="Product's name"
+            materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
+            MaxLength="40"
+            Style="{StaticResource MaterialDesignFilledTextBox}"
+            TextWrapping="Wrap" Canvas.Left="93" Canvas.Top="72" HorizontalAlignment="Left" VerticalAlignment="Top" Width="395" RenderTransformOrigin="0.501,0.559"
+            Text="{Binding SearchProduct, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            />
+
+
+        <TextBlock
+            Text="Products"
+            FontSize="17"
+            FontWeight="DemiBold" HorizontalAlignment="Left" 
+            Canvas.Left="275" VerticalAlignment="Top" Canvas.Top="129"/>
+
+        <TextBlock
+            Text="Cart"
+            FontSize="17"
+            FontWeight="DemiBold" HorizontalAlignment="Center" 
+            Canvas.Left="875" VerticalAlignment="Top" Canvas.Top="41"/>
+
+        <DataGrid
+            Name="gridProducts"
+            CanUserAddRows="False"
+            ItemsSource="{Binding Products}"
+            SelectionMode="Extended"
+            SelectionUnit="Cell" 
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            ScrollViewer.CanContentScroll="True" 
+            Height="301" Canvas.Left="10" Canvas.Top="173" HorizontalAlignment="Center" VerticalAlignment="Top" Width="598"
+            >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding ProductName}" Width="180"/>
+                <DataGridTextColumn Header="Weight" Binding="{Binding Weight}" Width="100" />
+                <DataGridTextColumn Header="UnitPrice" Binding="{Binding UnitPrice}" Width="100"/>
+                <DataGridTextColumn Header="UnitsInStock" Binding="{Binding UnitsInStock}" Width="140"/>
+
+                <DataGridTemplateColumn Header="Actions" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                Command="{Binding DataContext.AddToCart, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                CommandParameter="{Binding}"
+                                >
+                                <Button.Content>
+                                    <materialDesign:PackIcon Kind="PlusThick" />
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid
+            CanUserAddRows="False"
+            ItemsSource="{Binding ListOrderProduct, Mode=TwoWay}"
+            SelectionMode="Extended"
+            SelectionUnit="Cell" 
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            HorizontalAlignment="Left" 
+            Canvas.Left="707" 
+            VerticalAlignment="Top"
+            ScrollViewer.CanContentScroll="True" 
+            Height="244" Canvas.Top="80" Width="370"
+            >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding ProductName}" Width="160" />
+                <DataGridTemplateColumn Header="Quantity">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding UnitsInStock}" Width="80"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Actions">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                Command="{Binding DataContext.RemoveProductInCart , RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                CommandParameter="{Binding}" 
+                                >
+                                <Button.Content>
+                                    <materialDesign:PackIcon Kind="CloseThick" />
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Content="Total:" 
+               FontSize="24"
+               Canvas.Left="707" Canvas.Top="434"
+               HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        
+
+        <Label Content="Discount:" 
+               FontSize="24"
+               Canvas.Left="707" Canvas.Top="367"
+               HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock
+            Text="{Binding TotalPriceOrder}"
+            Width="200" Canvas.Left="829" Canvas.Top="428"
+            FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top"
+            />
+
+        <Button
+            Command="{Binding BackToPreviousScreen}"
+            Canvas.Left="829" Canvas.Top="482" 
+            HorizontalAlignment="Left" VerticalAlignment="Center" 
+            Width="92" Height="58"
+            Background="#0077d0"
+            FontSize="40"
+            >
+            <Button.Content>
+                <materialDesign:PackIcon 
+                    Width="40"
+                    Height="40"
+                    Kind="KeyboardReturn" />
+            </Button.Content>
+        </Button>
+
+
+        <Button
+            Command="{Binding CheckoutOrder}"
+            IsEnabled="{Binding EnableButtonCheckout}"
+            Canvas.Left="965" Canvas.Top="485" 
+            HorizontalAlignment="Left" VerticalAlignment="Top" 
+            Width="95" Height="56"
+            Background="#49be25"
+            FontSize="40"
+            >
+            <Button.Content>
+                <materialDesign:PackIcon 
+                    Width="40"
+                    Height="40"
+                    Kind="CartArrowRight" />
+            </Button.Content>
+        </Button>
+    </Canvas>
+</Page>

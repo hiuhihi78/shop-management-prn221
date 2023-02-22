@@ -24,6 +24,8 @@ namespace SalesWPFApp.ViewModels
         public HomeViewModel()
         {
             memberManagementCommand = new RelayCommand(HandleMemberManagement);
+            productManagementCommand = new RelayCommand(HandleProductManagement);
+            orderManagementCommand= new RelayCommand(HandleOrderManagement);    
         }
 
         #region management member
@@ -38,6 +40,39 @@ namespace SalesWPFApp.ViewModels
         private void HandleMemberManagement()
         {
             Navigation.NavigationService.NavigateTo(new MemeberManagement());
+        }
+
+        #endregion
+
+
+        #region management product
+        private RelayCommand productManagementCommand;
+
+        public RelayCommand ProductManagementCommand
+        {
+            get { return productManagementCommand; }
+            set { productManagementCommand = value; }
+        }
+
+        private void HandleProductManagement()
+        {
+            Navigation.NavigationService.NavigateTo(new ProductManagement());
+        }
+
+        #endregion
+
+        #region management order
+        private RelayCommand orderManagementCommand;
+
+        public RelayCommand OrderManagementCommand
+        {
+            get { return orderManagementCommand; }
+            set { orderManagementCommand = value; }
+        }
+
+        private void HandleOrderManagement()
+        {
+            Navigation.NavigationService.NavigateTo(new Order());
         }
 
         #endregion

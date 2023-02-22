@@ -1,0 +1,99 @@
+﻿<Window x:Class="SalesWPFApp.Views.PopupCreateUpdateProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalesWPFApp.Views"
+        mc:Ignorable="d"
+        Height="567" Width="585"
+         Background="WhiteSmoke"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:ValidationRule="clr-namespace:SalesWPFApp.Validation"
+         WindowStartupLocation="CenterScreen"
+        Name="MyWindown"
+        >
+    <Canvas Margin="0,10,10,-6">
+        <TextBox  Text="Product's Info" 
+                  FontWeight="Bold"
+                  FontSize="25"
+                  Canvas.Left="214" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <TextBox
+            materialDesign:HintAssist.Hint="Product Name"
+            Style="{StaticResource MaterialDesignFilledTextBox}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="368" Canvas.Left="117" Canvas.Top="88"
+            MaxLength="40"
+            >
+            <TextBox.Text>
+                <Binding
+                    Path="ProductName"
+                    UpdateSourceTrigger="PropertyChanged"
+                    Mode="TwoWay">
+                    <Binding.ValidationRules>
+                        <ValidationRule:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox
+            materialDesign:HintAssist.Hint="Weight"
+            Style="{StaticResource MaterialDesignFilledTextBox}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="368" Canvas.Left="117" Canvas.Top="167"
+            MaxLength="40"
+            >
+            <TextBox.Text>
+                <Binding
+                    Path="Weight"
+                    UpdateSourceTrigger="PropertyChanged"
+                    Mode="TwoWay">
+                    <Binding.ValidationRules>
+                        <ValidationRule:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox
+            materialDesign:HintAssist.Hint="UnitPrice"
+            Style="{StaticResource MaterialDesignFilledTextBox}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="368" Canvas.Left="117" Canvas.Top="237"
+            MaxLength="40"
+            >
+            <TextBox.Text>
+                <Binding
+                    Path="UnitPrice"
+                    UpdateSourceTrigger="PropertyChanged"
+                    Mode="TwoWay">
+                    <Binding.ValidationRules>
+                        <ValidationRule:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox
+            materialDesign:HintAssist.Hint="UnitsInStock"
+            Style="{StaticResource MaterialDesignFilledTextBox}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="368" Canvas.Left="117" Canvas.Top="304"
+            MaxLength="40"
+            >
+            <TextBox.Text>
+                <Binding
+                    Path="UnitsInStock"
+                    UpdateSourceTrigger="PropertyChanged"
+                    Mode="TwoWay">
+                    <Binding.ValidationRules>
+                        <ValidationRule:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+
+        <Button
+            Content="Submit"
+            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+            ToolTip="MaterialDesignFlatLightButton" Canvas.Left="243" Canvas.Top="463" HorizontalAlignment="Center" VerticalAlignment="Top" Width="116" Height="42" 
+            IsEnabled="{Binding EnableButton}"
+            Command="{Binding SubmitCommand}"
+            CommandParameter="{Binding ElementName=MyWindown}"
+            />
+    </Canvas>
+</Window>

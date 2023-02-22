@@ -1,0 +1,82 @@
+﻿<Page x:Class="SalesWPFApp.Views.ProductManagement"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SalesWPFApp.Views"
+      mc:Ignorable="d" 
+      Title="ProductManagement"
+      
+      d:DesignHeight="550" d:DesignWidth="1100"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      >
+    <Canvas>
+
+        <TextBox
+        materialDesign:HintAssist.Hint="Product's name"
+        AcceptsReturn="True"
+        Text="{Binding SearchProduct, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        Style="{StaticResource MaterialDesignFilledTextBox}"
+        TextWrapping="Wrap" Canvas.Left="58" Canvas.Top="58" HorizontalAlignment="Left" VerticalAlignment="Center" Width="241" />
+
+        <Button
+            Command="{Binding CreateProduct}"
+            Background="Coral" Canvas.Left="58" Canvas.Top="132"
+            >
+            <Button.Content>
+                Create new product
+            </Button.Content>
+        </Button>
+
+        <DataGrid
+            CanUserAddRows="False"
+            ItemsSource="{Binding Products}"
+            SelectionMode="Extended"
+            SelectionUnit="Cell" 
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            ScrollViewer.CanContentScroll="True" 
+            Height="301" Canvas.Left="58" Canvas.Top="194" HorizontalAlignment="Left" VerticalAlignment="Center" Width="751"
+            >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding ProductId}" Width="50"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding ProductName}" Width="180" />
+                <DataGridTextColumn Header="Weight" Binding="{Binding Weight}" Width="150"/>
+                <DataGridTextColumn Header="UnitPrice" Binding="{Binding UnitPrice}" Width="90"/>
+                <DataGridTextColumn Header="UnitsInStock" Binding="{Binding UnitsInStock}" Width="140"/>
+                <DataGridTemplateColumn Header="" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                Command="{Binding DataContext.UpdateProduct, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                CommandParameter="{Binding}"
+                                Background="Blue"
+                                >
+                                <Button.Content>
+                                    <materialDesign:PackIcon Kind="Update" />
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button
+            Command="{Binding BackToPreviousScreen}"
+            Canvas.Left="862" Canvas.Top="427" 
+            HorizontalAlignment="Left" VerticalAlignment="Top" 
+            Width="133" Height="68"
+            Background="#0077d0"
+            FontSize="40"
+            >
+            <Button.Content>
+                <materialDesign:PackIcon 
+                    Width="40"
+                    Height="40"
+                    Kind="KeyboardReturn" />
+            </Button.Content>
+        </Button>
+
+    </Canvas>
+</Page>
