@@ -90,6 +90,11 @@ namespace SalesWPFApp.ViewModels
             openOrderHistory = new RelayCommand(HandleOpenHistoryOrder);
             UpdateStatusCheckoutOrder();
             UpdateTotalPriceOrder();
+            searchHistoryOrder = new RelayCommand(HandleSearhHistoryOrder);
+            SearchEmail = string.Empty;
+            viewOrderDetail = new RelayCommand<OrderDTO>(ExecuteViewOrderDetail, (OrderDTO order) => true);
+            backToHsitoryOrderScreen = new RelayCommand(HandleBackToHsitoryOrderScreen);
+            openStatistics = new RelayCommand(HandleOpenStatistics);
         }
 
         #region load list product
@@ -267,6 +272,72 @@ namespace SalesWPFApp.ViewModels
         }
         #endregion
 
+
+
+
+        #region Decare varibles in History Order screen
+
+        private DateTime? startDate;
+
+        public DateTime? StartDate
+        {
+            get { return startDate; }
+            set { startDate = value; OnPropertyChanged(); }
+        }
+
+        private DateTime? endDate = DateTime.Now;
+
+        public DateTime? EndDate
+        {
+            get { return endDate; }
+            set { endDate = value; OnPropertyChanged(); }
+        }
+
+        private DateTime _currentDate = DateTime.Now;
+        public DateTime CurrentDate
+        {
+            get { return _currentDate; }
+            set
+            {
+                _currentDate = value;
+                OnPropertyChanged(nameof(CurrentDate));
+            }
+        }
+
+        private string searchEmail;
+        public string SearchEmail
+        {
+            get { return searchEmail; }
+            set { searchEmail = value; OnPropertyChanged(); GetListHistoryOrder(); }
+        }
+
+        private ObservableCollection<OrderDTO> listOrderHistory;
+        public ObservableCollection<OrderDTO> ListOrderHistory
+        {
+            get { return listOrderHistory; }
+            set { listOrderHistory = value; OnPropertyChanged(); }
+        }
+
+        private ObservableCollection<ProductDTO> listProductOrderHistory;
+        public ObservableCollection<ProductDTO> ListProductOrderHistory
+        {
+            get { return listProductOrderHistory; }
+            set { listProductOrderHistory = value; OnPropertyChanged(); }
+        }
+
+
+        private decimal totalPriceOrderHistory;
+
+        public decimal TotalPriceOrderHistory
+        {
+            get { return totalPriceOrderHistory; }
+            set { totalPriceOrderHistory = value; }
+        }
+
+
+
+        #endregion
+
         #region Open Order history
         private RelayCommand openOrderHistory;
 
@@ -276,21 +347,179 @@ namespace SalesWPFApp.ViewModels
             set { openOrderHistory = value; }
         }
 
+        
         public void HandleOpenHistoryOrder()
         {
             NavigationService.NavigateTo(new OrderHistory(), this);
+            GetListHistoryOrder();
         }
 
         #endregion
 
         #region Get list history order
 
-
-
-
+        public void GetListHistoryOrder()
+        {
+            if (((bool)NavigationParameters.Parameters["isAdmin"]))
+            {
+                ListOrderHistory = OrderManagement.Instance.GetListOrderByCondition(SearchEmail, StartDate, EndDate, null);
+            }
+            else
+            {
+                Member member = ((Member)NavigationParameters.Parameters["member"]);
+                ListOrderHistory = OrderManagement.Instance.GetListOrderByCondition(member.Email, StartDate, EndDate, member);
+            }
+            
+        }
 
 
         #endregion
+
+
+        #region Search button - historyOrder
+        private RelayCommand searchHistoryOrder;
+
+        public RelayCommand SearchHistoryOrder
+        {
+            get { return searchHistoryOrder; }
+            set { searchHistoryOrder = value; OnPropertyChanged(); }
+        }
+
+        public void HandleSearhHistoryOrder()
+        {
+            if(StartDate > EndDate)
+            {
+                MessageBox.Show("Please choose again start date!");
+                return;
+            }
+            GetListHistoryOrder();
+        }
+
+        #endregion
+
+        #region view history order detail  
+        private RelayCommand<OrderDTO> viewOrderDetail;
+
+        public RelayCommand<OrderDTO> ViewOrderDetail
+        {
+            get { return viewOrderDetail; }
+            set { viewOrderDetail = value; OnPropertyChanged();  }
+        }
+
+        private OrderDTO selectedOrder;
+
+        public OrderDTO SelectedOrder
+        {
+            get { return selectedOrder; }
+            set { selectedOrder = value; }
+        }
+
+
+        public void ExecuteViewOrderDetail(OrderDTO order)
+        {
+            Views.OrderDetail orderDetail = new Views.OrderDetail(this);
+            _orderDetailScreen = orderDetail;
+            SelectedOrder = order;
+            GetListProductOrderHistory(order.OrderId);
+            orderDetail.ShowDialog();
+        }
+
+        public void GetListProductOrderHistory(int OrderId)
+        {
+            ListProductOrderHistory = OrderManagement.Instance.GetListProductByOrderId(OrderId);
+            TotalPriceOrderHistory = listProductOrderHistory.Sum(x => x.UnitPrice * x.UnitsInStock);
+        }
+
+        #endregion
+
+        #region Back to history order screen
+        private RelayCommand backToHsitoryOrderScreen;
+
+        public RelayCommand BackToHsitoryOrderScreen
+        {
+            get { return backToHsitoryOrderScreen; }
+            set { backToHsitoryOrderScreen = value; }
+        }
+
+        private Window _orderDetailScreen;
+        private void HandleBackToHsitoryOrderScreen()
+        {
+            _orderDetailScreen.Close();
+        }
+
+        #endregion
+
+        #region Open Statistic
+        private RelayCommand openStatistics;
+
+        public RelayCommand OpenStatistics
+        {
+            get { return openStatistics; }
+            set { openStatistics = value; OnPropertyChanged();}
+        }
+
+        private ObservableCollection<ProductDTO> listProductStatistics;
+
+        public ObservableCollection<ProductDTO> ListProductStatistics
+        {
+            get { return listProductStatistics; }
+            set { listProductStatistics = value; OnPropertyChanged(); }
+        }
+
+        private void HandleOpenStatistics() 
+        {
+            GetListProductOrderStatistics();
+            OrderStatistics windown = new OrderStatistics(this);
+            windown.ShowDialog();   
+        }
+
+        #endregion
+
+        #region Get list product order Statistics
+        public void GetListProductOrderStatistics()
+        {
+            ObservableCollection<OrderDTO> listOrder = new ObservableCollection<OrderDTO>();
+            if (((bool)NavigationParameters.Parameters["isAdmin"]))
+            {
+                listOrder = OrderManagement.Instance.GetListOrderByCondition(SearchEmail, StartDate, EndDate, null);
+            }
+            else
+            {
+                Member member = ((Member)NavigationParameters.Parameters["member"]);
+                listOrder = OrderManagement.Instance.GetListOrderByCondition(member.Email, StartDate, EndDate, member);
+            }
+
+            ObservableCollection<ProductDTO> listProduct = new ObservableCollection<ProductDTO>();
+
+            foreach (var order in listOrder)
+            {
+                var listProductOrdered = OrderManagement.Instance.GetListProductByOrderId(order.OrderId);
+                foreach (var product in listProductOrdered)
+                {
+                    listProduct.Add(product);
+                }
+            }
+
+            ObservableCollection<ProductDTO> result = new ObservableCollection<ProductDTO>();
+            foreach (var product in listProduct)
+            {
+                var productExsited = result.FirstOrDefault(x => x.ProductId == product.ProductId) != null;
+                if (!productExsited)
+                {
+                    result.Add(product);
+                }
+                else
+                {
+                    var p = result.FirstOrDefault(x => x.ProductId == product.ProductId);
+                    p.UnitsInStock += product.UnitsInStock;
+                }
+            }
+
+            ListProductStatistics = result;
+        }
+        #endregion
+
+
 
     }
 }

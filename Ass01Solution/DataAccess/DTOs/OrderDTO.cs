@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccess.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -113,6 +114,20 @@ namespace DataAccess.DTOs
                     OnPropertyChanged(nameof(Member));
                 }
             }
+        }
+
+        public static OrderDTO FromOrder(Order order)
+        {
+            return new OrderDTO()
+            {
+                Freight = order.Freight,
+                Member = MemberDTO.FromMember(order.Member),
+                MemberId = order.MemberId,
+                OrderDate = order.OrderDate,
+                ShippedDate = order.ShippedDate,
+                OrderId = order.OrderId,
+                RequiredDate = order.RequiredDate,
+            };
         }
 
     }

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.IO;
 using Microsoft.Extensions.Options;
+using DataAccess.Models;
 
 namespace SalesWPFApp.ViewModels
 {
@@ -87,6 +88,7 @@ namespace SalesWPFApp.ViewModels
         }
 
         #endregion
+
 
     }
 }

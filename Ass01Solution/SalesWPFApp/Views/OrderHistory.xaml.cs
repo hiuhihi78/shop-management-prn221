@@ -22,6 +22,7 @@ namespace SalesWPFApp.Views
         public OrderHistory()
         {
             InitializeComponent();
+            
         }
     }
 }

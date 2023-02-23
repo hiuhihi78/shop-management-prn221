@@ -72,7 +72,7 @@ namespace SalesWPFApp.ViewModels
                 UnitPrice = product.UnitPrice.ToString();
                 UnitsInStock = product.UnitsInStock.ToString();
                 isCreate = false;
-
+                _initProductName = product.ProductName;
             }
             else
             {
@@ -80,6 +80,8 @@ namespace SalesWPFApp.ViewModels
             }
             submitCommand = new RelayCommand<object>(ExecuteHandleSubmit, (object parameter) => true);
         }
+
+        private string _initProductName;
 
         private RelayCommand<object> submitCommand;
 
@@ -103,17 +105,19 @@ namespace SalesWPFApp.ViewModels
             }else if((isNumber(Weight) && isNumber(UnitPrice) && isNumber(UnitsInStock)) == false){
                 MessageBox.Show("Field Weight,UnitPrice,UnitsInStock must be a number!");
                 return;
-            }else if(productExisted)
-            {
-                MessageBox.Show("Product name was exsited!");
-                return;
-            }
+            } 
 
             MessageBoxResult messageBox = MessageBox.Show("Are you sure you want to do this?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (messageBox == MessageBoxResult.Yes)
             {
+                
                 if (isCreate)
                 {
+                    if (productExisted)
+                    {
+                        MessageBox.Show("Product name was exsited!");
+                        return;
+                    }
                     var result = new Product()
                     {
                         ProductName = ProductName,
@@ -128,6 +132,11 @@ namespace SalesWPFApp.ViewModels
                 }
                 else
                 {
+                    if (productExisted && _initProductName != ProductName)
+                    {
+                        MessageBox.Show("Product name was exsited!");
+                        return;
+                    }
                     var result = new Product()
                     {
                         ProductName = ProductName,

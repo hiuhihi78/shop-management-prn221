@@ -67,7 +67,15 @@ namespace SalesWPFApp.ViewModels
 
 
         private MemberDTO _member;
+
         private bool isCreate;
+
+        public bool IsCreate
+        {
+            get { return isCreate; }
+            set { isCreate = value; OnPropertyChanged(); }
+        }
+
 
         #endregion
 
@@ -80,13 +88,13 @@ namespace SalesWPFApp.ViewModels
                 CompanyName = member.CompanyName;
                 City = member.City;
                 Country = member.Country;
-                Password= member.Password;  
-                isCreate= false;
+                Password= member.Password;
+                IsCreate = false;
                 
             }
             else
             {
-                isCreate= true;
+                IsCreate = true;
             }
 
             submitCommand = new RelayCommand<object>(ExecuteHandleSubmit,(object parameter) => true);
@@ -105,20 +113,11 @@ namespace SalesWPFApp.ViewModels
 
             var isCanSubmit = (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(Country) || string.IsNullOrEmpty(City) || string.IsNullOrEmpty(CompanyName)) == true ? false : true;
             var windown = parameter as Window;
-            var emailExisted = MemberManagement.Instance.GetMemberByEmail(Email) != null;
             Regex regex = new Regex("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
 
             if (isCanSubmit == false) 
             {
                 MessageBox.Show("You need to fill all field");
-                return;
-            }else if (emailExisted)
-            {
-                MessageBox.Show("Email was exsited");
-                return;
-            }else if (!regex.IsMatch(Email))
-            {
-                MessageBox.Show("Email must folow fomat!");
                 return;
             }
 

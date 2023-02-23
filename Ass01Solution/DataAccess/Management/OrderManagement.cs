@@ -1,5 +1,6 @@
 ﻿using DataAccess.DTOs;
 using DataAccess.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -88,6 +89,65 @@ namespace DataAccess.Management
                 transaction.Rollback();
                 return false;
             }
+        }
+
+
+        public ObservableCollection<OrderDTO> GetListOrderByCondition(string email, DateTime? startDate, DateTime? endDate, Member? member)
+        {
+            Assgiment1PrnContext context = new Assgiment1PrnContext();
+            List<Order> list = new List<Order>();
+            if(member == null)
+            {
+                if (startDate != null && endDate != null)
+                {
+                    list = context.Orders.Include(x => x.Member).Where(x => x.OrderDate <= endDate && x.OrderDate >= startDate && x.Member.Email.Contains(email)).ToList();
+                }
+                else if (startDate == null && endDate != null)
+                {
+                    list = context.Orders.Include(x => x.Member).Where(x => x.OrderDate <= endDate && x.Member.Email.Contains(email)).ToList();
+                }
+                else
+                {
+                    list = context.Orders.Include(x => x.Member).Where(x => x.Member.Email.Contains(email)).ToList();
+                }
+            }
+            else
+            {
+                if (startDate != null && endDate != null)
+                {
+                    list = context.Orders.Include(x => x.Member).Where(x => x.OrderDate <= endDate && x.OrderDate >= startDate && x.Member.Email == member.Email).ToList();
+                }
+                else if (startDate == null && endDate != null)
+                {
+                    list = context.Orders.Include(x => x.Member).Where(x => x.OrderDate <= endDate && x.Member.Email == (email)).ToList();
+                }
+                else
+                {
+                    list = context.Orders.Include(x => x.Member).Where(x => x.Member.Email == member.Email).ToList();
+                }
+            }
+            
+            
+            ObservableCollection<OrderDTO> orders = new ObservableCollection<OrderDTO>();
+            foreach (var item in list)
+            {
+                orders.Add(OrderDTO.FromOrder(item));
+            }
+            return orders;
+        }
+
+        public ObservableCollection<ProductDTO> GetListProductByOrderId(int OrderId)
+        {
+            Assgiment1PrnContext context = new Assgiment1PrnContext();
+            ObservableCollection<ProductDTO> result = new ObservableCollection<ProductDTO>();
+
+            var listProductId = context.OrderDetails.Where(x => x.OrderId == OrderId).ToList();
+            foreach (var item in listProductId) 
+            {
+                var product = context.Products.FirstOrDefault(x => x.ProductId == item.ProductId);  
+                result.Add(ProductDTO.FromProduct(product));
+            }
+            return result;
         }
     }
 }

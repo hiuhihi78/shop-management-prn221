@@ -19,7 +19,13 @@
     <Compile Update="Views\Order.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\OrderDetail.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\OrderHistory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\OrderStatistics.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\PopupCreateUpdateProduct.xaml.cs">
@@ -48,7 +54,13 @@
     <Page Update="Views\Order.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\OrderDetail.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\OrderHistory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\OrderStatistics.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\PopupCreateUpdateProduct.xaml">

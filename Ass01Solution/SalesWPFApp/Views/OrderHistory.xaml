@@ -3,56 +3,94 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SalesWPFApp.Views"
+        xmlns:local="clr-namespace:SalesWPFApp.Common"
         mc:Ignorable="d"
         Title="OrderHistory" Height="450" Width="800"
+        
+        xmlns:conver="clr-namspace:SalesWPFApp.Common"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      
         d:DesignHeight="550" d:DesignWidth="1000"
         FontSize="15"
       >
+
+    <Page.Resources>
+        <local:DateTimeConverter x:Key="DateTimeConverter" />
+    </Page.Resources>
+
 
     <Canvas>
         <TextBlock
             Text="ORDER"
             FontSize="30"
-            FontWeight="Bold" HorizontalAlignment="Left" Canvas.Left="83" VerticalAlignment="Center" Canvas.Top="27"
+            FontWeight="Bold" HorizontalAlignment="Center" Canvas.Left="35" VerticalAlignment="Top" Canvas.Top="10"
             />
         <TextBox
             materialDesign:HintAssist.Hint="Product's name"
             materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
             MaxLength="40"
             Style="{StaticResource MaterialDesignFilledTextBox}"
-            TextWrapping="Wrap" Canvas.Left="83" Canvas.Top="97" HorizontalAlignment="Left" VerticalAlignment="Top" Width="395" RenderTransformOrigin="0.501,0.559"
-            Text="{Binding SearchProduct, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            TextWrapping="Wrap" Canvas.Left="35" Canvas.Top="67" HorizontalAlignment="Left" VerticalAlignment="Top" Width="395" RenderTransformOrigin="0.501,0.559"
+            Text="{Binding SearchEmail, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
             />
+
+        <DatePicker
+            Width="140"
+            materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
+            materialDesign:HintAssist.FloatingOffset="0,-22"
+            materialDesign:HintAssist.Hint="Start date"
+            Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
+            Canvas.Left="35" Canvas.Top="129" 
+            SelectedDate="{Binding StartDate}"
+            DisplayDateEnd="{Binding EndDate}" HorizontalAlignment="Left"
+            />
+
+        <DatePicker
+            Width="140"
+            materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
+            materialDesign:HintAssist.FloatingOffset="0,-22"
+            materialDesign:HintAssist.Hint="End date"
+            Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
+            Canvas.Left="200" Canvas.Top="129" HorizontalAlignment="Left" 
+            SelectedDate="{Binding EndDate}"
+            DisplayDateEnd="{Binding CurrentDate}"
+            />
+
+        <Button
+            Content="Search"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+            ToolTip="MaterialDesignOutlinedButton" Canvas.Left="364" Canvas.Top="129" HorizontalAlignment="Left" Height="56" VerticalAlignment="Center" Width="102"
+            Command="{Binding SearchHistoryOrder}"
+            />
+
 
         <DataGrid
             Name="gridProducts"
             CanUserAddRows="False"
-            ItemsSource="{Binding Products}"
+            ItemsSource="{Binding ListOrderHistory}"
             SelectionMode="Extended"
             SelectionUnit="Cell" 
             AutoGenerateColumns="False"
             IsReadOnly="True"
             ScrollViewer.CanContentScroll="True" 
-            Height="301" Canvas.Left="83" Canvas.Top="183" HorizontalAlignment="Left" VerticalAlignment="Center" Width="618"
+            Height="243" Canvas.Left="35" Canvas.Top="223" HorizontalAlignment="Left" VerticalAlignment="Top" Width="721"
             >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding ProductName}" Width="180"/>
-                <DataGridTextColumn Header="Weight" Binding="{Binding Weight}" Width="100" />
-                <DataGridTextColumn Header="UnitPrice" Binding="{Binding UnitPrice}" Width="100"/>
-                <DataGridTextColumn Header="UnitsInStock" Binding="{Binding UnitsInStock}" Width="140"/>
+                <DataGridTextColumn Header="Email Member" Binding="{Binding Member.Email}" Width="180"/>
+                <DataGridTextColumn Header="Order Date" Binding="{Binding OrderDate}" Width="140" />
+                <DataGridTextColumn Header="Shipped" Binding="{Binding ShippedDate}" Width="140"/>
+                <DataGridTextColumn Header="Freight" Binding="{Binding Freight}" Width="140"/>
 
                 <DataGridTemplateColumn Header="Actions" Width="80">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button
-                                Command="{Binding DataContext.AddToCart, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                Command="{Binding DataContext.ViewOrderDetail, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                 CommandParameter="{Binding}"
+                                Background="#FF63BEE6"
                                 >
                                 <Button.Content>
-                                    <materialDesign:PackIcon Kind="PlusThick" />
+                                    <materialDesign:PackIcon Kind="Eye" />
                                 </Button.Content>
                             </Button>
                         </DataTemplate>
@@ -63,8 +101,8 @@
 
         <Button
             Command="{Binding BackToPreviousScreen}"
-            Canvas.Left="726" Canvas.Top="426" 
-            HorizontalAlignment="Center" VerticalAlignment="Top" 
+            Canvas.Left="800" Canvas.Top="408" 
+            HorizontalAlignment="Left" VerticalAlignment="Top" 
             Width="92" Height="58"
             Background="#0077d0"
             FontSize="40"

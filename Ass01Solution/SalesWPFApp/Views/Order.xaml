@@ -17,14 +17,14 @@
         <TextBlock
             Text="ORDER"
             FontSize="30"
-            FontWeight="Bold" HorizontalAlignment="Left" Canvas.Left="17" VerticalAlignment="Top" Canvas.Top="27"
+            FontWeight="Bold" HorizontalAlignment="Left" Canvas.Left="10" VerticalAlignment="Top" Canvas.Top="12"
             />
         <TextBox
             materialDesign:HintAssist.Hint="Product's name"
             materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
             MaxLength="40"
             Style="{StaticResource MaterialDesignFilledTextBox}"
-            TextWrapping="Wrap" Canvas.Left="93" Canvas.Top="72" HorizontalAlignment="Left" VerticalAlignment="Top" Width="395" RenderTransformOrigin="0.501,0.559"
+            TextWrapping="Wrap" Canvas.Left="60" Canvas.Top="57" HorizontalAlignment="Left" VerticalAlignment="Top" Width="395" RenderTransformOrigin="0.501,0.559"
             Text="{Binding SearchProduct, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
             />
 
@@ -36,10 +36,19 @@
             Canvas.Left="275" VerticalAlignment="Top" Canvas.Top="129"/>
 
         <Button
+            Command="{Binding OpenStatistics}"
+            materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+            materialDesign:ButtonProgressAssist.Value="-1"
+            Content="Statistis"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Style="{StaticResource MaterialDesignRaisedButton}" Canvas.Left="398" Canvas.Top="136" />
+
+        <Button
             Content="Order history"
             Style="{StaticResource MaterialDesignFlatLightBgButton}"
-            ToolTip="MaterialDesignFlatLightButton" Canvas.Left="492" 
-            Canvas.Top="130" HorizontalAlignment="Left" VerticalAlignment="Center" 
+            ToolTip="MaterialDesignFlatLightButton" Canvas.Left="525" 
+            Canvas.Top="136" HorizontalAlignment="Center" VerticalAlignment="Center" 
             Command="{Binding OpenOrderHistory}"
             />
 

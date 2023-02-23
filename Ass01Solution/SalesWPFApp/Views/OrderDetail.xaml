@@ -1,0 +1,86 @@
+﻿<Window x:Class="SalesWPFApp.Views.OrderDetail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalesWPFApp.Views"
+        mc:Ignorable="d"
+        Title="OrderDetail" Height="567" Width="800"
+        WindowStartupLocation="CenterScreen"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        >
+    <materialDesign:Card
+        Width="600">
+        <Canvas>
+            <TextBox Text="Order Detail" FontWeight="Bold" FontSize="25" Canvas.Left="37" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox
+                IsEnabled="False"
+                materialDesign:HintAssist.Hint="Email"
+                Text="{Binding SelectedOrder.Member.Email}"
+                AcceptsReturn="True"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                TextWrapping="Wrap" Canvas.Left="37" Canvas.Top="71" HorizontalAlignment="Left" VerticalAlignment="Top" Width="270"
+                />
+            <TextBox
+                materialDesign:HintAssist.Hint="Order Date"
+                Text="{Binding SelectedOrder.OrderDate}"
+                AcceptsReturn="True"
+                IsEnabled="False"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                TextWrapping="Wrap" Canvas.Left="37" Canvas.Top="121" HorizontalAlignment="Left" VerticalAlignment="Top" Width="270"
+                />
+            <TextBox
+                materialDesign:HintAssist.Hint="Shipped Date"
+                Text="{Binding SelectedOrder.ShippedDate}"
+                AcceptsReturn="True"
+                IsEnabled="False"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                TextWrapping="Wrap" Canvas.Left="37" Canvas.Top="171" HorizontalAlignment="Left" VerticalAlignment="Top" Width="270"
+                />
+            <DataGrid
+            Name="gridProducts"
+            CanUserAddRows="False"
+            ItemsSource="{Binding ListProductOrderHistory}"
+            SelectionMode="Extended"
+            SelectionUnit="Cell" 
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            ScrollViewer.CanContentScroll="True" 
+            Height="147" Canvas.Left="37" Canvas.Top="243" HorizontalAlignment="Center" VerticalAlignment="Center" Width="526"
+            >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding ProductName}" Width="180"/>
+                    <DataGridTextColumn Header="Weight" Binding="{Binding Weight}" Width="100" />
+                    <DataGridTextColumn Header="UnitPrice" Binding="{Binding UnitPrice}" Width="100"/>
+                    <DataGridTextColumn Header="UnitsInStock" Binding="{Binding UnitsInStock}" Width="140"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Label Content="Total" FontSize="20" Canvas.Left="350" Canvas.Top="411"/>
+
+            <TextBlock Text="{Binding TotalPriceOrderHistory}" Width="180" 
+                       FontSize="20"
+                       Canvas.Left="400" Canvas.Top="415" HorizontalAlignment="Center" Height="34" VerticalAlignment="Top"/>
+
+
+            <Button
+            Command="{Binding BackToHsitoryOrderScreen}"
+            Canvas.Left="488" Canvas.Top="466" 
+            HorizontalAlignment="Left" VerticalAlignment="Top" 
+            Width="92" Height="58"
+            Background="#0077d0"
+            FontSize="40"
+            >
+                <Button.Content>
+                    <materialDesign:PackIcon 
+                    Width="40"
+                    Height="40"
+                    Kind="KeyboardReturn" />
+                </Button.Content>
+            </Button>
+        </Canvas>
+    </materialDesign:Card>
+
+</Window>

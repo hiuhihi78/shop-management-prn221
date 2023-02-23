@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using SalesWPFApp.Views;
+using System.Windows;
 
 namespace SalesWPFApp.ViewModels
 {
@@ -25,7 +26,8 @@ namespace SalesWPFApp.ViewModels
         {
             memberManagementCommand = new RelayCommand(HandleMemberManagement);
             productManagementCommand = new RelayCommand(HandleProductManagement);
-            orderManagementCommand= new RelayCommand(HandleOrderManagement);    
+            orderManagementCommand= new RelayCommand(HandleOrderManagement);
+            logoutCommand = new RelayCommand(HandleLogout);
         }
 
         #region management member
@@ -73,6 +75,34 @@ namespace SalesWPFApp.ViewModels
         private void HandleOrderManagement()
         {
             Navigation.NavigationService.NavigateTo(new Order());
+        }
+
+        #endregion
+
+        #region Logout
+        private RelayCommand logoutCommand;
+
+        public RelayCommand LogoutCommand
+        {
+            get { return logoutCommand; }
+            set { logoutCommand = value; OnPropertyChanged(); }
+        }
+
+        private void HandleLogout()
+        {
+            MessageBoxResult result = MessageBox.Show("You are sure ?", "", MessageBoxButton.YesNo, MessageBoxImage.Error);
+            if (result == MessageBoxResult.Yes)
+            {
+                if ((bool)NavigationParameters.Parameters["isAdmin"])
+                {
+                    NavigationParameters.Parameters.Remove("isAdmin");
+                }
+                else
+                {
+                    NavigationParameters.Parameters.Remove("member");
+                }
+                Navigation.NavigationService.NavigateTo(new Login());
+            }
         }
 
         #endregion
