@@ -95,6 +95,7 @@ namespace SalesWPFApp.ViewModels
             viewOrderDetail = new RelayCommand<OrderDTO>(ExecuteViewOrderDetail, (OrderDTO order) => true);
             backToHsitoryOrderScreen = new RelayCommand(HandleBackToHsitoryOrderScreen);
             openStatistics = new RelayCommand(HandleOpenStatistics);
+            backButonStatiscScreen = new RelayCommand(HandleBackStaticsScreen);
         }
 
         #region load list product
@@ -189,7 +190,6 @@ namespace SalesWPFApp.ViewModels
 
         #endregion
 
-
         #region Update total price order
         public void UpdateTotalPriceOrder()
         {
@@ -271,9 +271,6 @@ namespace SalesWPFApp.ViewModels
             }
         }
         #endregion
-
-
-
 
         #region Decare varibles in History Order screen
 
@@ -375,7 +372,6 @@ namespace SalesWPFApp.ViewModels
 
         #endregion
 
-
         #region Search button - historyOrder
         private RelayCommand searchHistoryOrder;
 
@@ -470,12 +466,22 @@ namespace SalesWPFApp.ViewModels
         {
             GetListProductOrderStatistics();
             OrderStatistics windown = new OrderStatistics(this);
+            _orderStaticScreen = windown;
             windown.ShowDialog();   
         }
 
         #endregion
 
         #region Get list product order Statistics
+
+        private decimal totalPriceStatic;
+
+        public decimal TotalPriceStatic
+        {
+            get { return totalPriceStatic; }
+            set { totalPriceStatic = value; }
+        }
+
         public void GetListProductOrderStatistics()
         {
             ObservableCollection<OrderDTO> listOrder = new ObservableCollection<OrderDTO>();
@@ -516,10 +522,30 @@ namespace SalesWPFApp.ViewModels
             }
 
             ListProductStatistics = result;
+
+            foreach (var item in result)
+            {
+                TotalPriceStatic += item.UnitPrice * item.UnitsInStock;
+            }
         }
         #endregion
 
+        #region Back button order statisc
+        private RelayCommand backButonStatiscScreen;
 
+        public RelayCommand BackButonStatiscScreen
+        {
+            get { return backButonStatiscScreen; }
+            set { backButonStatiscScreen = value; }
+        }
+
+        private Window _orderStaticScreen;
+        private void HandleBackStaticsScreen()
+        {
+            _orderStaticScreen.Close();
+        }
+
+        #endregion
 
     }
 }

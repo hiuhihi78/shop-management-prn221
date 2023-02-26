@@ -14,5 +14,8 @@ namespace DataAccess.Repository
         Member GetMember(string email, string password);
         Member GetMemberByEmail(string email);
         ObservableCollection<MemberDTO> GetListMember(string parmeter);
+        bool DeleteMember(int memberId);
+        void CreateMember(Member member);   
+        void UpdateMember(Member member);
     }
 }

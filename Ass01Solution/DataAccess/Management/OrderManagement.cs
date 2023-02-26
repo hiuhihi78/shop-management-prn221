@@ -144,7 +144,9 @@ namespace DataAccess.Management
             var listProductId = context.OrderDetails.Where(x => x.OrderId == OrderId).ToList();
             foreach (var item in listProductId) 
             {
-                var product = context.Products.FirstOrDefault(x => x.ProductId == item.ProductId);  
+                var product = context.Products.FirstOrDefault(x => x.ProductId == item.ProductId);
+                product.UnitsInStock = item.Quantity;
+                product.UnitPrice = item.UnitPrice; 
                 result.Add(ProductDTO.FromProduct(product));
             }
             return result;

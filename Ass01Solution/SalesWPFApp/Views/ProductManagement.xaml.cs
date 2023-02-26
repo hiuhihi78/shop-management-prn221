@@ -26,5 +26,7 @@ namespace SalesWPFApp.Views
             InitializeComponent();
             DataContext = new ProductManagementViewModel();
         }
+
+   
     }
 }

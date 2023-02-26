@@ -25,7 +25,7 @@
             FontWeight="Bold" HorizontalAlignment="Center" Canvas.Left="35" VerticalAlignment="Top" Canvas.Top="10"
             />
         <TextBox
-            materialDesign:HintAssist.Hint="Product's name"
+            materialDesign:HintAssist.Hint="Member's email"
             materialDesign:TextFieldAssist.CharacterCounterVisibility="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextBoxTextCountComboBox, Converter={StaticResource BooleanToVisibilityConverter}}"
             MaxLength="40"
             Style="{StaticResource MaterialDesignFilledTextBox}"
@@ -62,6 +62,16 @@
             ToolTip="MaterialDesignOutlinedButton" Canvas.Left="364" Canvas.Top="129" HorizontalAlignment="Left" Height="56" VerticalAlignment="Center" Width="102"
             Command="{Binding SearchHistoryOrder}"
             />
+
+
+        <Button
+            Command="{Binding OpenStatistics}"
+            materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+            materialDesign:ButtonProgressAssist.Value="-1"
+            Content="Statistis"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Style="{StaticResource MaterialDesignRaisedButton}" Canvas.Left="675" Canvas.Top="186" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
 
         <DataGrid

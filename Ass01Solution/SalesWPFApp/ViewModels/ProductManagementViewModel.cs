@@ -43,7 +43,33 @@ namespace SalesWPFApp.ViewModels
         }
 
 
-        public bool IsAdmin { get; set; }   
+        public bool IsAdmin { get; set; }
+
+        private int productId;
+
+        public int ProductId
+        {
+            get { return productId; }
+            set { productId = value; OnPropertyChanged(); }
+        }
+
+        private decimal productPrice;
+
+        public decimal ProductPrice
+        {
+            get { return productPrice; }
+            set { productPrice = value; OnPropertyChanged(); }
+        }
+
+        private int productQuantity;
+
+        public int ProductQuantity
+        {
+            get { return productQuantity; }
+            set { productQuantity = value; OnPropertyChanged(); }
+        }
+
+
 
         public ProductManagementViewModel()
         {
@@ -54,6 +80,10 @@ namespace SalesWPFApp.ViewModels
             createProduct = new RelayCommand(ExecuteCreateProduct);
             backToPreviousScreen = new RelayCommand(HandleBackToPreviousScreen);
             IsAdmin = (bool)NavigationParameters.Parameters["isAdmin"];
+            searchCommand = new RelayCommand(HandleSearchCommand);
+            ProductId = 0;
+            ProductPrice = 0;
+            ProductQuantity = 0;
         }
 
 
@@ -157,7 +187,33 @@ namespace SalesWPFApp.ViewModels
         }
         #endregion
 
+        #region Search commad
+        private RelayCommand searchCommand;
 
+        public RelayCommand SearchCommand
+        {
+            get { return searchCommand; }
+            set { searchCommand = value; OnPropertyChanged(); }
+        }
+
+        public void HandleSearchCommand()
+        {
+            bool canSearch = true;
+            try
+            {
+                Int32.Parse(ProductId.ToString());
+                decimal.Parse(ProductPrice.ToString());
+                Int32.Parse(ProductQuantity.ToString());
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show("Id, price, stock must be a number");
+                return;
+            }
+                Products = DataAccess.Management.ProductManagement.Instance.GetListProductByCondition(ProductId, SearchProduct, ProductPrice, ProductQuantity);
+        }
+
+        #endregion
     }
 }
 

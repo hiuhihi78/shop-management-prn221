@@ -17,17 +17,24 @@ namespace SalesWPFApp
     public partial class App : Application
     {
         private ServiceProvider serviceProvider;
-        public App() 
+        public App()
         {
-            //Config for DependencyInjection ()
+            //Config for DependencyInjection (01)
             ServiceCollection services = new ServiceCollection();
             ConfigureServices(services);
+            serviceProvider = services.BuildServiceProvider();
         }
 
         private void ConfigureServices(ServiceCollection services)
         {
             services.AddSingleton(typeof(IMemberRepository), typeof(MemberRepository));
             services.AddSingleton<MemberManagement>();
+        }
+
+        private void OnStartup(object sender, StartupEventArgs e)
+        {
+            var window = serviceProvider.GetService<MainWindow>();
+            window.Show();
         }
     }
 }

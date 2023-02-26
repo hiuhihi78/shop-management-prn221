@@ -13,6 +13,8 @@ using System.Windows;
 using System.IO;
 using Microsoft.Extensions.Options;
 using DataAccess.Models;
+using System.Windows.Controls;
+using System.Text.RegularExpressions;
 
 namespace SalesWPFApp.ViewModels
 {
@@ -50,6 +52,7 @@ namespace SalesWPFApp.ViewModels
         public LoginViewModel()
         {
             login = new RelayCommand(HandleLogin);
+            passwordChangedCommand = new RelayCommand<object>(HandleGetPassword, (object param) => true);
         }
 
         #region login
@@ -63,6 +66,17 @@ namespace SalesWPFApp.ViewModels
 
         public void HandleLogin()
         {
+
+            Regex regex = new Regex("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+            if (!regex.IsMatch(Email)){
+                MessageBox.Show("Email must be follow format!");
+                return;
+            }else if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
+            {
+                MessageBox.Show("Email or Password can not be empty!");
+                return;
+            }
+
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build();
@@ -70,6 +84,7 @@ namespace SalesWPFApp.ViewModels
             var adminPassword = configuration.GetSection("AppSettings").GetSection("password").Value;
 
             var member = MemberManagement.Instance.GetMember(Email, Password);
+
             if (member != null)
             {
                 NavigationParameters.Parameters.Add("isAdmin", false);
@@ -85,6 +100,22 @@ namespace SalesWPFApp.ViewModels
             {
                 MessageBox.Show("Login failed. Please check your credentials and try again.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        #endregion
+
+        #region PasswordChangedCommand 
+        private RelayCommand<object> passwordChangedCommand;
+
+        public RelayCommand<object> PasswordChangedCommand
+        {
+            get { return passwordChangedCommand; }
+            set { passwordChangedCommand = value; }
+        }
+
+        private void HandleGetPassword(object passwordBox)
+        {
+            Password = ((PasswordBox)passwordBox).Password;
         }
 
         #endregion

@@ -116,5 +116,31 @@ namespace DataAccess.Management
             product.Weight = productUpdate.Weight;  
             context.SaveChanges();
         }
+
+        public ObservableCollection<ProductDTO> GetListProductByCondition(int id,string name, decimal price, int quantity)
+        {
+            Assgiment1PrnContext context = new Assgiment1PrnContext();
+            ObservableCollection<ProductDTO> result = new ObservableCollection<ProductDTO>();
+            List<Product> products = new List<Product>();
+            products = context.Products.Where(x => x.ProductName.Contains(name)).ToList();
+            if(id != 0) 
+            {
+                products = products.Where(x => x.ProductId == id).ToList(); 
+            }
+            if(price!= 0) 
+            {
+                products = products.Where(x => x.UnitPrice <= price).ToList();            
+            }
+            if(quantity!= 0)
+            {
+                products = products.Where(x => x.UnitsInStock <= quantity).ToList();   
+            }
+            
+            foreach (var memeber in products)
+            {
+                result.Add(ProductDTO.FromProduct(memeber));
+            }
+            return result;
+        }
     }
 }

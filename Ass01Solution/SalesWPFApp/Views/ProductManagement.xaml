@@ -19,11 +19,47 @@
             />
 
         <TextBox
+        materialDesign:HintAssist.Hint="Product's id"
+        AcceptsReturn="True"
+        Text="{Binding ProductId, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        Style="{StaticResource MaterialDesignFilledTextBox}"
+        TextWrapping="Wrap" Canvas.Left="70" Canvas.Top="72" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" />
+
+        <TextBox
         materialDesign:HintAssist.Hint="Product's name"
         AcceptsReturn="True"
         Text="{Binding SearchProduct, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
         Style="{StaticResource MaterialDesignFilledTextBox}"
-        TextWrapping="Wrap" Canvas.Left="58" Canvas.Top="72" HorizontalAlignment="Center" VerticalAlignment="Top" Width="241" />
+        TextWrapping="Wrap" Canvas.Left="192" Canvas.Top="72" HorizontalAlignment="Left" VerticalAlignment="Center" Width="242" />
+
+        <TextBox
+        materialDesign:HintAssist.Hint="Product's UnitPrice"
+        AcceptsReturn="True"
+        Text="{Binding ProductPrice, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        Style="{StaticResource MaterialDesignFilledTextBox}"
+        TextWrapping="Wrap" Canvas.Left="450" Canvas.Top="72"
+            HorizontalAlignment="Left" VerticalAlignment="Center" Width="142" 
+            />
+
+        <TextBox
+        materialDesign:HintAssist.Hint="Product's UnitInStock"
+        AcceptsReturn="True"
+        Text="{Binding ProductQuantity, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        Style="{StaticResource MaterialDesignFilledTextBox}"
+        TextWrapping="Wrap" Canvas.Left="616" Canvas.Top="72"
+            HorizontalAlignment="Left" VerticalAlignment="Center" Width="142" 
+            />
+
+        <Button
+            Command="{Binding SearchCommand}"
+            Background="Gray" Canvas.Left="785" Canvas.Top="66"
+            HorizontalAlignment="Center" VerticalAlignment="Top" Height="51" Width="70" 
+            >
+            <Button.Content>
+                <materialDesign:PackIcon Kind="Magnify" Width="30" Height="30"/>
+            </Button.Content>
+        </Button>
+
 
         <Button
             Command="{Binding CreateProduct}"

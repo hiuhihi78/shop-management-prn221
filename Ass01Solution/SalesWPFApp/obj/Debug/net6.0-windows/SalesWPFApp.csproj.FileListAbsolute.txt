@@ -162,3 +162,5 @@ D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\
 D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\OrderDetail.baml
 D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\OrderStatistics.g.cs
 D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\obj\Debug\net6.0-windows\Views\OrderStatistics.baml
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\bin\Debug\net6.0-windows\Microsoft.Expression.Interactions.dll
+D:\FU\PRN221\Nop Bai\shop-management-prn221\Ass01Solution\SalesWPFApp\bin\Debug\net6.0-windows\System.Windows.Interactivity.dll

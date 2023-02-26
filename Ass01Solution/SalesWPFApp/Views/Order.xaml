@@ -35,14 +35,6 @@
             FontWeight="DemiBold" HorizontalAlignment="Left" 
             Canvas.Left="275" VerticalAlignment="Top" Canvas.Top="129"/>
 
-        <Button
-            Command="{Binding OpenStatistics}"
-            materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-            materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-            materialDesign:ButtonProgressAssist.Value="-1"
-            Content="Statistis"
-            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-            Style="{StaticResource MaterialDesignRaisedButton}" Canvas.Left="398" Canvas.Top="136" />
 
         <Button
             Content="Order history"
@@ -55,8 +47,8 @@
         <TextBlock
             Text="Cart"
             FontSize="17"
-            FontWeight="DemiBold" HorizontalAlignment="Center" 
-            Canvas.Left="875" VerticalAlignment="Top" Canvas.Top="41"/>
+            FontWeight="DemiBold" HorizontalAlignment="Left" 
+            Canvas.Left="889" VerticalAlignment="Top" Canvas.Top="129"/>
 
         <DataGrid
             Name="gridProducts"
@@ -99,10 +91,10 @@
             AutoGenerateColumns="False"
             IsReadOnly="True"
             HorizontalAlignment="Left" 
-            Canvas.Left="707" 
+            Canvas.Left="706" 
             VerticalAlignment="Top"
             ScrollViewer.CanContentScroll="True" 
-            Height="244" Canvas.Top="80" Width="370"
+            Height="244" Canvas.Top="185" Width="370"
             >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding ProductName}" Width="160" />
@@ -137,15 +129,7 @@
 
 
 
-        <Label Content="Discount:" 
-               FontSize="24"
-               Canvas.Left="707" Canvas.Top="367"
-               HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBlock
-            Text="{Binding TotalPriceOrder}"
-            Width="200" Canvas.Left="829" Canvas.Top="428"
-            FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top"
-            />
+
 
         <Button
             Command="{Binding BackToPreviousScreen}"

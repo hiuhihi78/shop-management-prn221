@@ -36,20 +36,21 @@
 
 
         <Label Content="Tota:l" 
-               Canvas.Left="279" Canvas.Top="439" 
+               Canvas.Left="183" Canvas.Top="424" 
                HorizontalAlignment="Left" 
-               VerticalAlignment="Center"
+               VerticalAlignment="Top"
                FontSize="20"
                />
 
         <TextBlock 
-            Text="{Binding TotalPriceOrder}"
+            Text="{Binding TotalPriceStatic}"
+            Width="198" Canvas.Left="242" Canvas.Top="433" HorizontalAlignment="Left" Height="26" VerticalAlignment="Center"
             />
 
         <Button
-            
-            Canvas.Left="332" Canvas.Top="506" 
-            HorizontalAlignment="Center" VerticalAlignment="Top" 
+            Command="{Binding BackButonStatiscScreen}"
+            Canvas.Left="341" Canvas.Top="502" 
+            HorizontalAlignment="Left" VerticalAlignment="Top" 
             Width="92" Height="58"
             Background="#0077d0"
             FontSize="40"
