@@ -2,6 +2,7 @@
 using DataAccess.Management;
 using DataAccess.Models;
 using SalesWPFApp.Commands;
+using SalesWPFApp.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -96,8 +97,8 @@ namespace SalesWPFApp.ViewModels
 
             var isCanSubmit = (string.IsNullOrEmpty(ProductName) || string.IsNullOrEmpty(Weight) || string.IsNullOrEmpty(UnitPrice) || string.IsNullOrEmpty(UnitsInStock)) == true ? false : true;
             var windown = parameter as Window;
-            var productExisted = ProductManagement.Instance.GetProductByName(ProductName) != null;
-
+            //var productExisted = ProductManagement.Instance.GetProductByName(ProductName) != null;
+            var productExisted = DataContext.productRepository.GetProductByName(ProductName) != null;
             if (isCanSubmit == false)
             {
                 MessageBox.Show("You need to fill all field");
@@ -125,7 +126,8 @@ namespace SalesWPFApp.ViewModels
                         UnitPrice = decimal.Parse(UnitPrice),
                         UnitsInStock = int.Parse(UnitsInStock)
                     };
-                    ProductManagement.Instance.CreateProduct(result);
+                    //ProductManagement.Instance.CreateProduct(result);
+                    DataContext.productRepository.CreateProduct(result);
                     MessageBox.Show("Operation completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     Navigation.NavigationService.NavigateTo(new Views.ProductManagement());
                     windown.Close();
@@ -145,7 +147,8 @@ namespace SalesWPFApp.ViewModels
                         UnitsInStock = int.Parse(UnitsInStock),
                         ProductId = _product.ProductId,
                     };
-                    ProductManagement.Instance.UpdateProduct(result);
+                    //ProductManagement.Instance.UpdateProduct(result);
+                    DataContext.productRepository.UpdateProduct(result);
                     MessageBox.Show("Operation completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     Navigation.NavigationService.NavigateTo(new Views.ProductManagement());
                     windown.Close();

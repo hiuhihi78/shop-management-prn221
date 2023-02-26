@@ -3,6 +3,7 @@ using DataAccess.Management;
 using DataAccess.Models;
 using Microsoft.Extensions.FileSystemGlobbing.Internal;
 using SalesWPFApp.Commands;
+using SalesWPFApp.Common;
 using SalesWPFApp.Navigation;
 using System;
 using System.Collections.Generic;
@@ -134,7 +135,8 @@ namespace SalesWPFApp.ViewModels
                         CompanyName = CompanyName,
                         Email = Email,
                     };
-                    MemberManagement.Instance.CreateMember(result);
+                    //MemberManagement.Instance.CreateMember(result);
+                    DataContext.memberRepository.CreateMember(result);
                     MessageBox.Show("Operation completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     windown.Close();
                 }
@@ -149,7 +151,8 @@ namespace SalesWPFApp.ViewModels
                         Email = Email,
                         MemberId = _member.MemberId,
                     };
-                    MemberManagement.Instance.UpdateMember(result);
+                    //MemberManagement.Instance.UpdateMember(result);
+                    DataContext.memberRepository.UpdateMember(result);
                     MessageBox.Show("Operation completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     windown.Close();
                 }

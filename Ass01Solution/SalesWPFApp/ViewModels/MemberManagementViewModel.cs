@@ -13,6 +13,7 @@ using SalesWPFApp.Commands;
 using System.Windows;
 using SalesWPFApp.Views;
 using SalesWPFApp.Navigation;
+using SalesWPFApp.Common;
 
 namespace SalesWPFApp.ViewModels
 {
@@ -71,13 +72,15 @@ namespace SalesWPFApp.ViewModels
             var isAdmin = (bool)NavigationParameters.Parameters["isAdmin"];
             if (isAdmin)
             {
-                Members = MemberManagement.Instance.GetListMember(SearchMember);
+                //Members = MemberManagement.Instance.GetListMember(SearchMember);
+                Members = DataContext.memberRepository.GetListMember(SearchMember);
             }
             else
             {
                 var member = (Member)NavigationParameters.Parameters["member"];
                 Members = new ObservableCollection<MemberDTO>();
-                Members.Add(MemberDTO.FromMember(MemberManagement.Instance.GetMemberByEmail(member.Email)));
+                //Members.Add(MemberDTO.FromMember(MemberManagement.Instance.GetMemberByEmail(member.Email)));
+                Members.Add(MemberDTO.FromMember(DataContext.memberRepository.GetMemberByEmail(member.Email)));
             }
         }   
         #endregion
@@ -96,8 +99,9 @@ namespace SalesWPFApp.ViewModels
             MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this item?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                var isSuccess = MemberManagement.Instance.DeleteMember(member.MemberId);
-                if(isSuccess) 
+                //var isSuccess = MemberManagement.Instance.DeleteMember(member.MemberId);
+                var isSuccess = DataContext.memberRepository.DeleteMember(member.MemberId);
+                if (isSuccess) 
                 {
                     MessageBox.Show("Delete completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     LoadDataGridMembers();

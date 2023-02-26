@@ -2,6 +2,7 @@
 using DataAccess.Management;
 using DataAccess.Models;
 using SalesWPFApp.Commands;
+using SalesWPFApp.Common;
 using SalesWPFApp.Navigation;
 using SalesWPFApp.Views;
 using System;
@@ -92,7 +93,8 @@ namespace SalesWPFApp.ViewModels
         #region Load list members
         public void LoadDataGridMembers()
         {
-            Products = DataAccess.Management.ProductManagement.Instance.GetListProduct(SearchProduct);
+            //Products = DataAccess.Management.ProductManagement.Instance.GetListProduct(SearchProduct);
+            Products = DataContext.productRepository.GetListProduct(SearchProduct);
         }
         #endregion
 
@@ -110,7 +112,8 @@ namespace SalesWPFApp.ViewModels
             MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this item?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                var isSuccess = DataAccess.Management.ProductManagement.Instance.DeleteProduct(product.ProductId);
+                //var isSuccess = DataAccess.Management.ProductManagement.Instance.DeleteProduct(product.ProductId);
+                var isSuccess = DataContext.productRepository.DeleteProduct(product.ProductId);
                 if (isSuccess)
                 {
                     MessageBox.Show("Delete completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -210,7 +213,8 @@ namespace SalesWPFApp.ViewModels
                 MessageBox.Show("Id, price, stock must be a number");
                 return;
             }
-                Products = DataAccess.Management.ProductManagement.Instance.GetListProductByCondition(ProductId, SearchProduct, ProductPrice, ProductQuantity);
+            //Products = DataAccess.Management.ProductManagement.Instance.GetListProductByCondition(ProductId, SearchProduct, ProductPrice, ProductQuantity);
+            Products = DataContext.productRepository.GetListProductByCondition(ProductId, SearchProduct, ProductPrice, ProductQuantity);
         }
 
         #endregion

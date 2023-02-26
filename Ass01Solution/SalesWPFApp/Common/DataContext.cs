@@ -10,5 +10,8 @@ namespace SalesWPFApp.Common
     public static class DataContext
     {
         public static IMemberRepository memberRepository { get; set; }
+        public static IOrderRepository orderRepository { get; set; }
+
+        public static IProductRepository productRepository { get; set; }
     }
 }

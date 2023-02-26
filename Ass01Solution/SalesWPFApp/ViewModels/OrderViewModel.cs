@@ -2,6 +2,7 @@
 using DataAccess.Management;
 using DataAccess.Models;
 using SalesWPFApp.Commands;
+using SalesWPFApp.Common;
 using SalesWPFApp.Navigation;
 using SalesWPFApp.Views;
 using System;
@@ -101,7 +102,8 @@ namespace SalesWPFApp.ViewModels
         #region load list product
         public void LoadListProduct()
         {
-            Products = DataAccess.Management.ProductManagement.Instance.GetListProduct(SearchProduct);
+            //Products = DataAccess.Management.ProductManagement.Instance.GetListProduct(SearchProduct);
+            Products = DataContext.productRepository.GetListProduct(SearchProduct);
         }
         #endregion
 
@@ -144,7 +146,8 @@ namespace SalesWPFApp.ViewModels
             }
             else
             {
-                ProductDTO product = DataAccess.Management.ProductManagement.Instance.GetProductById(productSelected.ProductId);
+                //ProductDTO product = DataAccess.Management.ProductManagement.Instance.GetProductById(productSelected.ProductId);
+                ProductDTO product = DataContext.productRepository.GetProductById(productSelected.ProductId);
                 if (product == null)
                 {
 
@@ -255,7 +258,8 @@ namespace SalesWPFApp.ViewModels
                     ShippedDate = DateTime.Now.AddDays(3),
                 };
 
-                if (OrderManagement.Instance.CreateOrder(orderInfo, ListOrderProduct) == true)
+                //if (OrderManagement.Instance.CreateOrder(orderInfo, ListOrderProduct) == true)
+                if (DataContext.orderRepository.CreateOrder(orderInfo, ListOrderProduct) == true)
                 {
                     MessageBox.Show("Success!", "Alter", MessageBoxButton.OK, MessageBoxImage.Information);
                     // remove cart
@@ -359,12 +363,14 @@ namespace SalesWPFApp.ViewModels
         {
             if (((bool)NavigationParameters.Parameters["isAdmin"]))
             {
-                ListOrderHistory = OrderManagement.Instance.GetListOrderByCondition(SearchEmail, StartDate, EndDate, null);
+                //ListOrderHistory = OrderManagement.Instance.GetListOrderByCondition(SearchEmail, StartDate, EndDate, null);
+                ListOrderHistory = DataContext.orderRepository.GetListOrderByCondition(SearchEmail, StartDate, EndDate, null);
             }
             else
             {
                 Member member = ((Member)NavigationParameters.Parameters["member"]);
-                ListOrderHistory = OrderManagement.Instance.GetListOrderByCondition(member.Email, StartDate, EndDate, member);
+                //ListOrderHistory = OrderManagement.Instance.GetListOrderByCondition(member.Email, StartDate, EndDate, member);
+                ListOrderHistory = DataContext.orderRepository.GetListOrderByCondition(member.Email, StartDate, EndDate, member);
             }
             
         }
@@ -422,7 +428,8 @@ namespace SalesWPFApp.ViewModels
 
         public void GetListProductOrderHistory(int OrderId)
         {
-            ListProductOrderHistory = OrderManagement.Instance.GetListProductByOrderId(OrderId);
+            //ListProductOrderHistory = OrderManagement.Instance.GetListProductByOrderId(OrderId);
+            ListProductOrderHistory = DataContext.orderRepository.GetListProductByOrderId(OrderId);
             TotalPriceOrderHistory = listProductOrderHistory.Sum(x => x.UnitPrice * x.UnitsInStock);
         }
 
@@ -487,19 +494,22 @@ namespace SalesWPFApp.ViewModels
             ObservableCollection<OrderDTO> listOrder = new ObservableCollection<OrderDTO>();
             if (((bool)NavigationParameters.Parameters["isAdmin"]))
             {
-                listOrder = OrderManagement.Instance.GetListOrderByCondition(SearchEmail, StartDate, EndDate, null);
+                //listOrder = OrderManagement.Instance.GetListOrderByCondition(SearchEmail, StartDate, EndDate, null);
+                listOrder = DataContext.orderRepository.GetListOrderByCondition(SearchEmail, StartDate, EndDate, null);
             }
             else
             {
                 Member member = ((Member)NavigationParameters.Parameters["member"]);
-                listOrder = OrderManagement.Instance.GetListOrderByCondition(member.Email, StartDate, EndDate, member);
+                //listOrder = OrderManagement.Instance.GetListOrderByCondition(member.Email, StartDate, EndDate, member);
+                listOrder = DataContext.orderRepository.GetListOrderByCondition(member.Email, StartDate, EndDate, member);
             }
 
             ObservableCollection<ProductDTO> listProduct = new ObservableCollection<ProductDTO>();
 
             foreach (var order in listOrder)
             {
-                var listProductOrdered = OrderManagement.Instance.GetListProductByOrderId(order.OrderId);
+                //var listProductOrdered = OrderManagement.Instance.GetListProductByOrderId(order.OrderId);
+                var listProductOrdered = DataContext.orderRepository.GetListProductByOrderId(order.OrderId);
                 foreach (var product in listProductOrdered)
                 {
                     listProduct.Add(product);

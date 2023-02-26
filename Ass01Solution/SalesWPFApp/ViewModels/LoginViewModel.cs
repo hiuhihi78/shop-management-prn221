@@ -83,8 +83,7 @@ namespace SalesWPFApp.ViewModels
             var adminEmail = configuration.GetSection("AppSettings").GetSection("email").Value;
             var adminPassword = configuration.GetSection("AppSettings").GetSection("password").Value;
 
-            var member = MemberManagement.Instance.GetMember(Email, Password);
-
+            var member = Common.DataContext.memberRepository.GetMember(Email, Password);
             if (member != null)
             {
                 NavigationParameters.Parameters.Add("isAdmin", false);

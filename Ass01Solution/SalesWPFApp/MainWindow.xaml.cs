@@ -23,11 +23,23 @@ namespace SalesWPFApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        IMemberRepository _memberRepository;
+        IOrderRepository _orderRepository;
+        IProductRepository _productRepository;
+        public MainWindow(IMemberRepository memberRepository, IOrderRepository orderRepository, IProductRepository productRepository)
         {
             InitializeComponent();
+
+            _memberRepository = memberRepository;
+            Common.DataContext.memberRepository = _memberRepository;
+            _orderRepository = orderRepository;
+            Common.DataContext.orderRepository = _orderRepository;
+            _productRepository = productRepository;
+            Common.DataContext.productRepository = _productRepository;
+
             NavigationService.Initialize(MainFrame);
             NavigationService.NavigateTo(new Login());
+            
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

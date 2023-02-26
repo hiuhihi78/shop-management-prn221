@@ -24,13 +24,13 @@ namespace SalesWPFApp
             ConfigureServices(services);
             serviceProvider = services.BuildServiceProvider();
         }
-
         private void ConfigureServices(ServiceCollection services)
         {
             services.AddSingleton(typeof(IMemberRepository), typeof(MemberRepository));
-            services.AddSingleton<MemberManagement>();
+            services.AddSingleton(typeof(IOrderRepository), typeof(OrderRepository));
+            services.AddSingleton(typeof(IProductRepository), typeof(ProductRepository));
+            services.AddSingleton<MainWindow>();
         }
-
         private void OnStartup(object sender, StartupEventArgs e)
         {
             var window = serviceProvider.GetService<MainWindow>();
